@@ -23,13 +23,13 @@ text_as_int = np.array([char2idx[c] for c in text])
 seq_length = 100
 examples_per_epoch = len(text)  // seq_length
 
-char_dataset = tf.data.Dataset.from_tensor_slices(text_ass_int)
-sequences = char_dataset.batch(seq_length+1, drop_remainder=True)
+char_dataset = tf.data.Dataset.from_tensor_slices(text_as_int)
+sequences = char_dataset.batch(seq_length+1, drop_reminder=True)
 
 #function for input -target seqq 
 def split_input_target(chunk):
     input_seq = chunk[:-1]
-    target_seq = [1:]
+    target_seq = chunk[1:]
     return input_seq, target_seq
 
 dataset = sequences.map(split_input_target)
